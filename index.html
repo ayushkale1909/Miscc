@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Connect to Kairos Core</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .window {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    #logMessages {
+      height: 200px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    #logMessages p {
+      margin: 0;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .btn-container button {
+      margin: 0 10px;
+    }
+
+    .btn-connect {
+      background-color: #87CEFA;
+    }
+
+    .btn-connect:hover {
+      background-color: #5F9EA0;
+    }
+
+    .btn-disconnect {
+      background-color: #FF6347;
+    }
+
+    .btn-disconnect:hover {
+      background-color: #FF4500;
+    }
+  </style>
+</head>
+<body>
+  <h1>Connect to Kairos</h1>
+  
+  <div class="window">
+    <div class="btn-container">
+      <button class="btn-connect">Connect</button>
+      <button class="btn-disconnect">Disconnect</button>
+    </div>
+  </div>
+
+  <div class="window">
+    <h2>Log Messages</h2>
+    <div id="logMessages"></div>
+  </div>
+
+  <script>
+    function connect() {
+      //connect with WSL using SSH
+      
+      var currentTime = new Date().toLocaleTimeString();
+
+      addLogMessage('Connected to Kairos Core at ' + currentTime);
+    }
+
+    function disconnect() {
+      
+      var currentTime = new Date().toLocaleTimeString();
+
+      addLogMessage('Disconnected at ' + currentTime);
+    }
+
+    function addLogMessage(message) {
+      var logMessages = document.getElementById('logMessages');
+      var p = document.createElement('p');
+      p.textContent = message;
+      logMessages.appendChild(p);
+      logMessages.scrollTop = logMessages.scrollHeight; // Auto-scroll to the bottom
+    }
+
+    document.querySelector('.btn-connect').addEventListener('click', connect);
+    document.querySelector('.btn-disconnect').addEventListener('click', disconnect);
+  </script>
+</body>
+</html>
